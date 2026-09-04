@@ -1,6 +1,7 @@
 package com.example.flashcards.data.local.db.daos
 
 import androidx.room3.Dao
+import androidx.room3.Delete
 import androidx.room3.Insert
 import androidx.room3.OnConflictStrategy
 import androidx.room3.Query
@@ -17,4 +18,10 @@ interface FlashCardDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFlashCard(flashCard: FlashCardEntity): Long
+
+    @Delete
+    suspend fun deleteFlashCard(flashCard: FlashCardEntity): Int
+
+    @Query("DELETE FROM flash_card WHERE id = :id")
+    suspend fun deleteFlashCardById(id: Long): Int
 }

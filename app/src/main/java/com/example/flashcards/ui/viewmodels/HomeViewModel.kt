@@ -38,6 +38,10 @@ class HomeViewModel @Inject constructor(
             }
             HomeEvent.OnFolderCreateButtonClicked -> {
             }
+
+            is HomeEvent.OnFlashCardDeleteButtonClicked -> viewModelScope.launch(Dispatchers.IO) {
+                flashCardRepository.deleteFlashCardById(event.id)
+            }
         }
     }
 }

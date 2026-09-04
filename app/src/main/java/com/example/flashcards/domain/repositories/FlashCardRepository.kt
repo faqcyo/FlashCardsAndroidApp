@@ -8,4 +8,7 @@ interface FlashCardRepository {
     suspend fun getFlashCardById(id: Long): FlashCard
 
     suspend fun createFlashCard(flashCard: FlashCard): Long // Returns the id of the new entry
+
+    suspend fun deleteFlashCard(flashCard: FlashCard): Int // Returns the amount of entries deleted
+    suspend fun deleteFlashCardById(id: Long): Int
 }

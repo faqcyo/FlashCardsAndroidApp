@@ -3,9 +3,15 @@ package com.example.flashcards.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -38,14 +44,26 @@ fun HomeScreen(
             }
         }
         LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(5.dp)
+            verticalArrangement = Arrangement.spacedBy(5.dp),
         ) {
             items(flashCards.value) { flashCard ->
-                Column {
-                    Text(flashCard.id.toString())
-                    Text(flashCard.title)
-                    Text(flashCard.front)
-                    Text(flashCard.back)
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp)
+                ) {
+                    Column {
+                        Text(flashCard.id.toString())
+                        Text(flashCard.title)
+                        Text(flashCard.front)
+                        Text(flashCard.back)
+                    }
+                    IconButton(
+                        onClick = { viewModel.onEvent(HomeEvent.OnFlashCardDeleteButtonClicked(flashCard.id)) }
+                    ) {
+                        Icon(Icons.Default.Delete, "Delete flash card")
+                    }
                 }
             }
         }
