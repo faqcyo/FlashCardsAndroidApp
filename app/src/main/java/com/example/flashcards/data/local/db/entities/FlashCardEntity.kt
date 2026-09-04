@@ -7,7 +7,8 @@ import com.example.flashcards.domain.models.FlashCard
 
 @Entity(tableName = "flash_card")
 data class FlashCardEntity(
-    @PrimaryKey(autoGenerate = true) val id: Long,
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") val id: Long,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "creation_date", defaultValue = "CURRENT_TIMESTAMP") val creationDate: String = "",
     @ColumnInfo(name = "front") val front: String,

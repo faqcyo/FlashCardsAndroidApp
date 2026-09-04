@@ -9,9 +9,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 object Home
 
-fun NavGraphBuilder.homeScreen() {
+fun NavGraphBuilder.homeScreen(
+    navigateToFlashCardEditingScreen: (Long) -> Unit
+) {
     composable<Home> {
-        HomeScreen()
+        HomeScreen(
+            navigateToFlashCardEditingScreen = navigateToFlashCardEditingScreen
+        )
     }
 }
 

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface FlashCardDao {
     @Query("SELECT * FROM flash_card WHERE id = :id")
-    suspend fun getFlashCardById(id: Long): FlashCardEntity
+    suspend fun getFlashCardById(id: Long): FlashCardEntity?
 
     @Query("SELECT * FROM flash_card")
     fun getFlashCards(): Flow<List<FlashCardEntity>>

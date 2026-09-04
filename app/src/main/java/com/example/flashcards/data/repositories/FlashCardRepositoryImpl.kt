@@ -19,8 +19,11 @@ class FlashCardRepositoryImpl @Inject constructor(
             }
         }
     }
-    override suspend fun getFlashCardById(id: Long): FlashCard {
-        return flashCardDao.getFlashCardById(id).toModel()
+    override suspend fun getFlashCardById(id: Long): FlashCard? {
+        println(id)
+        val flashCardEntity = flashCardDao.getFlashCardById(id)
+        println(flashCardEntity)
+        return flashCardEntity?.toModel()
     }
 
     override suspend fun createFlashCard(flashCard: FlashCard): Long {
